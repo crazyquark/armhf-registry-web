@@ -1,7 +1,7 @@
 # docker-registry-web
 
 Web UI, authentication service and event recorder for private docker registry v2.  
-**This is the ARMv7 version**  
+**This is the ARMv7 version.**  
 
 [![Docker Stars](https://img.shields.io/docker/stars/hyper/docker-registry-web.svg?maxAge=86400)](https://hub.docker.com/r/hyper/docker-registry-web/) [![Docker Pulls](https://img.shields.io/docker/pulls/hyper/docker-registry-web.svg?maxAge=86400)](https://hub.docker.com/r/hyper/docker-registry-web/)
 
