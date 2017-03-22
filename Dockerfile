@@ -5,6 +5,7 @@ RUN echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/docker-no-reco
     echo 'APT::Install-Suggests "false";' >> /etc/apt/apt.conf.d/docker-no-recommends
 
 # Install java and tomcat
+RUN     apt-get update
 RUN     apt-get install -y python-software-properties debconf-utils
 RUN     add-apt-repository ppa:webupd8team/java
 RUN     apt-get update
@@ -12,8 +13,8 @@ RUN     apt-get update
 RUN     echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
 RUN     apt-get install oracle-java8-installer
 
-ENV DEBIAN_FRONTEND noninteractive
-RUN     apt-get update && apt-get install -y tomcat7 libyaml-perl libfile-slurp-perl && \
+ENV     DEBIAN_FRONTEND noninteractive
+RUN     apt-get install -y tomcat7 libyaml-perl libfile-slurp-perl && \
         rm -rf /var/lib/tomcat7/webapps/* && \
         rm -rf /var/lib/apt/lists/*
 
@@ -21,8 +22,8 @@ ENV     JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV     CATALINA_HOME /usr/share/tomcat7
 ENV     CATALINA_BASE /var/lib/tomcat7
 
-ENV CATALINA_OPTS=" -Djava.security.egd=file:/dev/./urandom"
-ENV PATH $CATALINA_HOME/bin:$PATH
+ENV     CATALINA_OPTS=" -Djava.security.egd=file:/dev/./urandom"
+ENV     PATH $CATALINA_HOME/bin:$PATH
 
 COPY tomcat/server.xml $CATALINA_BASE/conf/
 COPY web-app/WEB-INF/config.yml /conf/config.yml
