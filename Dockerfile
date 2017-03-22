@@ -1,4 +1,4 @@
-FROM    armv7/armhf-ubuntu:14.04
+FROM    armv7/armhf-ubuntu
 
 ENV DEBIAN_FRONTEND noninteractive
 #prevent apt from installing recommended packages
