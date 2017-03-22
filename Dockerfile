@@ -1,4 +1,4 @@
-FROM    armv7/armhf-ubuntu
+FROM    armv7/armhf-ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
 #prevent apt from installing recommended packages
@@ -6,7 +6,9 @@ RUN echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/docker-no-reco
     echo 'APT::Install-Suggests "false";' >> /etc/apt/apt.conf.d/docker-no-recommends
 
 # Install java and tomcat
-RUN     apt-get update && apt-get install -y tomcat7 openjdk-7-jdk libyaml-perl libfile-slurp-perl && \
+RUN     add-apt-repository ppa:webupd8team/java
+RUN     apt-get update
+RUN     apt-get update && apt-get install -y tomcat7 oracle-java8-installer libyaml-perl libfile-slurp-perl && \
         rm -rf /var/lib/tomcat7/webapps/* && \
         rm -rf /var/lib/apt/lists/*
 
