@@ -6,13 +6,18 @@ RUN echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/docker-no-reco
     echo 'APT::Install-Suggests "false";' >> /etc/apt/apt.conf.d/docker-no-recommends
 
 # Install java and tomcat
+
 RUN     add-apt-repository ppa:webupd8team/java
 RUN     apt-get update
+
+RUN     echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+RUN     echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+
 RUN     apt-get update && apt-get install -y tomcat7 oracle-java8-installer libyaml-perl libfile-slurp-perl && \
         rm -rf /var/lib/tomcat7/webapps/* && \
         rm -rf /var/lib/apt/lists/*
 
-ENV     JAVA_HOME /usr/lib/jvm/java-7-openjdk-armhf
+ENV     JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV     CATALINA_HOME /usr/share/tomcat7
 ENV     CATALINA_BASE /var/lib/tomcat7
 
