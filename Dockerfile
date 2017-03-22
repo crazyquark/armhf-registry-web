@@ -6,7 +6,7 @@ RUN echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/docker-no-reco
 
 # Install java and tomcat
 RUN     apt-get update
-RUN     apt-get install -y python-software-properties debconf-utils
+RUN     apt-get install -y software-properties-common debconf-utils
 RUN     add-apt-repository ppa:webupd8team/java
 RUN     apt-get update
 
